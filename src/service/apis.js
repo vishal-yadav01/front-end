@@ -1,4 +1,4 @@
-const BASE_URL = "https://backend-five-jet-44.vercel.app/api/v1/";
+const BASE_URL = "https://backend-five-jet-44.vercel.app/api/v1";
 
 //* AUTH ENDPOINTS
 export const endpoints = {
