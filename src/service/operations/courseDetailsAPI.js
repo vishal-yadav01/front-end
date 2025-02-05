@@ -276,20 +276,33 @@ export const deleteSubSection = async (data, token) => {
 export const fetchInstructorCourses = async (token) => {
   const toastId = toast.loading("Loading...");
   let result = [];
+
   try {
-    const response = await apiConnector("GET", GET_ALL_INSTRUCTOR_COURSES_API, {
-      Authorization: `Bearer ${token}`,
-    });
-    // console.log("fetchInstructorCourses======= API>", response);
-    if (!response.data.success) {
-      throw new Error(response.data.message);
+    const response = await fetch(
+      "http://localhost:8080/api/v1/course/getInstructorCourses",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    console.log("🔴🔴🔴🔴 fetchInstructorCourses API Response:", data);
+
+    if (!data.success) {
+      throw new Error(data.message);
     }
-    result = response?.data?.data;
-    // toast.success("all couses fetched succefulyl");
+
+    result = data?.data;
+    // toast.success("All courses fetched successfully");
   } catch (error) {
-    // console.log("INSTRUCTOR COURSES API ERROR............", error);
+    console.error("INSTRUCTOR COURSES API ERROR:", error);
     toast.error(error.message);
   }
+
   toast.dismiss(toastId);
   return result;
 };
