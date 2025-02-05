@@ -181,7 +181,10 @@ const Navbar = () => {
   const fetchSubLinks = async () => {
     setLoading(true);
     try {
-      const result = await apiConnector("GET", categories.CATEGORIES_API);
+      const result = await apiConnector(
+        "GET",
+        "https://backend-five-jet-44.vercel.app/api/v1/course/showAllCategories"
+      );
       setSubLinks(result.data.data);
       //("Fetched Categories: ", result.data.data);
     } catch (error) {
