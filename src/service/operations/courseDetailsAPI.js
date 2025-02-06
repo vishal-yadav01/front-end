@@ -279,7 +279,7 @@ export const fetchInstructorCourses = async (token) => {
 
   try {
     const response = await fetch(
-      "http://localhost:8080/api/v1/course/getInstructorCourses",
+      "https://backend-five-jet-44.vercel.app/api/v1/course/getInstructorCourses",
       {
         method: "GET",
         headers: {
