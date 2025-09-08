@@ -1,17 +1,17 @@
-import { useState } from "react";
-import { toast } from "react-hot-toast";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { sendOtp } from "../../../service/operations/authAPI";
+import { sendOtp } from '../../../service/operations/authAPI';
 
-import { setSingupData } from "../../../slices/authSlice";
-import { ACCOUNT_TYPE } from "../../../utils/constant";
+import { setSingupData } from '../../../slices/authSlice';
+import { ACCOUNT_TYPE } from '../../../utils/constant';
 
-import Tab from "../../common/Tab";
+import Tab from '../../common/Tab';
 
-import PasswordInput from "./PasswordInput";
+import PasswordInput from './PasswordInput';
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -21,11 +21,11 @@ const SignupForm = () => {
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -46,7 +46,7 @@ const SignupForm = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords Do Not Match");
+      toast.error('Passwords Do Not Match');
       return;
     }
     const signupData = {
@@ -62,11 +62,11 @@ const SignupForm = () => {
 
     // Reset
     setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
     });
     setAccountType(ACCOUNT_TYPE.STUDENT);
   };
@@ -74,12 +74,12 @@ const SignupForm = () => {
   const tabData = [
     {
       id: 1,
-      tabName: "Student",
+      tabName: 'Student',
       type: ACCOUNT_TYPE.STUDENT,
     },
     {
       id: 2,
-      tabName: "Instructor",
+      tabName: 'Instructor',
       type: ACCOUNT_TYPE.INSTRUCTOR,
     },
   ];
@@ -105,7 +105,7 @@ const SignupForm = () => {
               onChange={handleOnChange}
               placeholder="Enter First Name"
               style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.18)',
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
@@ -122,7 +122,7 @@ const SignupForm = () => {
               onChange={handleOnChange}
               placeholder="Enter last name"
               style={{
-                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.18)',
               }}
               className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
             />
@@ -140,29 +140,29 @@ const SignupForm = () => {
             onChange={handleOnChange}
             placeholder="Enter email address"
             style={{
-              boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+              boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.18)',
             }}
             className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
           />
         </label>
         <div className="flex gap-4">
           <PasswordInput
-            label={"Create Password"}
+            label={'Create Password'}
             showPassword={showPassword}
             handleOnChange={handleOnChange}
             value={password}
             setShowPassword={setShowPassword}
-            placeValue={"Enter Password"}
-            nameValue={"password"}
+            placeValue={'Enter Password'}
+            nameValue={'password'}
           />
           <PasswordInput
-            label={" Confirm Password "}
+            label={' Confirm Password '}
             showPassword={showConfirmPassword}
             handleOnChange={handleOnChange}
             value={confirmPassword}
             setShowPassword={setShowConfirmPassword}
-            placeValue={"Confirm Password"}
-            nameValue={"confirmPassword"}
+            placeValue={'Confirm Password'}
+            nameValue={'confirmPassword'}
           />
         </div>
         <button

@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
-import OtpInput from "react-otp-input";
-import { Link } from "react-router-dom";
-import { BiArrowBack } from "react-icons/bi";
-import { RxCountdownTimer } from "react-icons/rx";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { sendOtp, signUp } from "../service/operations/authAPI";
+import { useEffect, useState } from 'react';
+import OtpInput from 'react-otp-input';
+import { Link } from 'react-router-dom';
+import { BiArrowBack } from 'react-icons/bi';
+import { RxCountdownTimer } from 'react-icons/rx';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { sendOtp, signUp } from '../service/operations/authAPI';
 function VerifyEmail() {
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState('');
   const { signupData, loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,13 +16,19 @@ function VerifyEmail() {
   useEffect(() => {
     // Only allow access of this route when user has filled the signup form
     if (!signupData) {
-      navigate("/signup");
+      navigate('/signup');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleVerifyAndSignup = (e) => {
     e.preventDefault();
+    if (!otp || otp.length != 6) {
+      toast.error('Please enter a valid 6-digit OTP');
+      return;
+    }
+    console.log('wrong');
+    // e.preventDefault();
     const {
       accountType,
       firstName,
@@ -69,14 +76,14 @@ function VerifyEmail() {
                   {...props}
                   placeholder="-"
                   style={{
-                    boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+                    boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.18)',
                   }}
                   className="w-[48px] lg:w-[60px] border-0 bg-richblack-800 rounded-[0.5rem] text-richblack-5 aspect-square text-center focus:border-0 focus:outline-2 focus:outline-yellow-50"
                 />
               )}
               containerStyle={{
-                justifyContent: "space-between",
-                gap: "0 6px",
+                justifyContent: 'space-between',
+                gap: '0 6px',
               }}
             />
             <button
